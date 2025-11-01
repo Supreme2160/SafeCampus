@@ -14,6 +14,7 @@ export default function Navbar() {
     const links = [
         { href: "/modules", label: "Modules" },
         { href: "/games", label: "Games" },
+        { href: "/alerts", label: "Alerts" },
         { href: "/virtual-training", label: "Virtual Training" },
         { href: "/dashboard", label: "Dashboard" },
         { href: "/how-it-works", label: "How it works" },
