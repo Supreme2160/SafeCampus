@@ -1,6 +1,7 @@
 import fetchModules from "@/actions/fetchmodules";
 import Navbar from "@/components/custom/navbar/navbar";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Modules() {
     const modules = await fetchModules();
@@ -82,7 +83,7 @@ export default async function Modules() {
             {/* Modules Grid */}
             <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {modules.map((module) => (
+                    {modules.map((module: any) => (
                         <div
                             key={module.id}
                             className="group rounded-2xl p-px bg-linear-to-br from-blue-400/20 via-indigo-400/15 to-purple-400/20 dark:from-blue-400/25 dark:via-indigo-400/20 dark:to-purple-400/25 hover:from-blue-500/35 hover:via-indigo-500/30 hover:to-purple-500/35 dark:hover:from-blue-500/35 dark:hover:via-indigo-500/30 dark:hover:to-purple-500/35 transition-all duration-300 cursor-pointer shadow-sm shadow-blue-500/10"
@@ -103,16 +104,26 @@ export default async function Modules() {
                                 <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                     {module.title}
                                 </h3>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-5 flex-1">
+                                <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 flex-1">
                                     {module.description}
                                 </p>
+
+                                <Link
+                                    href={`/modules/${module.id}`}
+                                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium bg-linear-to-r from-blue-500 to-indigo-500 text-white hover:from-blue-600 hover:to-indigo-600 transition-all shadow-lg shadow-indigo-500/25 mb-4"
+                                >
+                                    Start Module
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </Link>
 
                                 <div className="flex justify-between items-center pt-4 border-t border-slate-200/60 dark:border-slate-700/60">
                                     <span className="flex items-center gap-1 text-slate-600 dark:text-slate-400 text-sm">
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        {module.duration}
+                                        {module.duration} min
                                     </span>
                                     <span
                                         className={`px-3 py-1 rounded-full text-xs font-medium ${module.level === 'Beginner'
