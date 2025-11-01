@@ -12,3 +12,90 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String   @id @default(cuid())
+  username String   @unique
+  email    String   @unique
+  password String  
+  name     String?
+  userType USERTYPE @default(STUDENT)
+  student  Student?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  teacher Teacher?
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  enrolledAt DateTime @default(now())
+  gamesPlayed Int      @default(0)
+  gamesScores  GameScore[]
+  modulesCompleted Modules[] @relation("CompletedModules")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Teacher {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GameScore {
+  id        String   @id @default(cuid())
+  student   Student  @relation(fields: [studentId], references: [id])
+  studentId String
+  score     Int
+  gameName  GAMENAMETYPES
+  playedAt  DateTime @default(now())
+  gameType  GAMETYPE
+}
+
+
+model Modules {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  lessons     Lesson[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  completedBy Student[] @relation("CompletedModules")
+}
+
+
+model Lesson {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  videoUrl  String
+  module    Modules  @relation(fields: [moduleId], references: [id])
+  moduleId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum USERTYPE {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum GAMETYPE {
+  QUIZ
+  PUZZLE
+  ADVENTURE
+  RHYTHM
+}
+
+enum GAMENAMETYPES {
+    EARTHQUAKE
+    FLOOD
+    TSUNAMI
+    VOLCANO
+    FOREST_FIRE
+}
