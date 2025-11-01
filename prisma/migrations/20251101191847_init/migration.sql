@@ -7,6 +7,9 @@ CREATE TYPE "GAMETYPE" AS ENUM ('QUIZ', 'PUZZLE', 'ADVENTURE', 'RHYTHM');
 -- CreateEnum
 CREATE TYPE "GAMENAMETYPES" AS ENUM ('EARTHQUAKE', 'FLOOD', 'TSUNAMI', 'VOLCANO', 'FOREST_FIRE');
 
+-- CreateEnum
+CREATE TYPE "QuestionType" AS ENUM ('EARTHQUAKE', 'FLOOD', 'TSUNAMI', 'VOLCANO', 'FOREST_FIRE');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
@@ -56,12 +59,41 @@ CREATE TABLE "GameScore" (
 );
 
 -- CreateTable
+CREATE TABLE "Quiz" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Quiz_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Question" (
+    "id" TEXT NOT NULL,
+    "quizId" TEXT NOT NULL,
+    "questionText" TEXT NOT NULL,
+    "options" TEXT[],
+    "correctAnswer" TEXT NOT NULL,
+    "theme" "QuestionType" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Question_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Modules" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "published" BOOLEAN NOT NULL DEFAULT false,
+    "coverImage" TEXT,
+    "duration" INTEGER NOT NULL,
+    "level" TEXT NOT NULL,
 
     CONSTRAINT "Modules_pkey" PRIMARY KEY ("id")
 );
@@ -77,6 +109,39 @@ CREATE TABLE "Lesson" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Lesson_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AlertSubscriber" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "subscribedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "AlertSubscriber_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "SentAlert" (
+    "id" TEXT NOT NULL,
+    "alertId" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "severity" TEXT NOT NULL,
+    "recipientCount" INTEGER NOT NULL,
+    "sentAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "SentAlert_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AlertCheck" (
+    "id" TEXT NOT NULL,
+    "checkedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "alertsFound" INTEGER NOT NULL DEFAULT 0,
+    "emailsSent" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "AlertCheck_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -100,6 +165,21 @@ CREATE UNIQUE INDEX "Student_userId_key" ON "Student"("userId");
 CREATE UNIQUE INDEX "Teacher_userId_key" ON "Teacher"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Quiz_title_key" ON "Quiz"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Question_quizId_questionText_key" ON "Question"("quizId", "questionText");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Modules_title_key" ON "Modules"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Lesson_moduleId_title_key" ON "Lesson"("moduleId", "title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "AlertSubscriber_email_key" ON "AlertSubscriber"("email");
+
+-- CreateIndex
 CREATE INDEX "_CompletedModules_B_index" ON "_CompletedModules"("B");
 
 -- AddForeignKey
@@ -110,6 +190,9 @@ ALTER TABLE "Teacher" ADD CONSTRAINT "Teacher_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "GameScore" ADD CONSTRAINT "GameScore_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Question" ADD CONSTRAINT "Question_quizId_fkey" FOREIGN KEY ("quizId") REFERENCES "Quiz"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Lesson" ADD CONSTRAINT "Lesson_moduleId_fkey" FOREIGN KEY ("moduleId") REFERENCES "Modules"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

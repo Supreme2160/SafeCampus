@@ -35,87 +35,88 @@ export default function Home() {
             </div>
 
             {/* Right Content - Mission Card */}
-            <div className="relative lg:ml-8">
-              <div className="rounded-2xl p-px bg-linear-to-br from-blue-400/40 via-indigo-400/30 to-purple-400/40 dark:from-blue-400/40 dark:via-indigo-400/30 dark:to-purple-400/40 shadow-xl shadow-blue-500/10">
-                <div className="bg-white/90 dark:bg-slate-900/60 backdrop-blur rounded-[15px] p-6 sm:p-8 space-y-6">
-                  {/* Window Controls */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+
+          </div>
+          <div className="relative lg:ml-8">
+            <div className="rounded-2xl p-px bg-linear-to-br from-blue-400/40 via-indigo-400/30 to-purple-400/40 dark:from-blue-400/40 dark:via-indigo-400/30 dark:to-purple-400/40 shadow-xl shadow-blue-500/10">
+              <div className="bg-white/90 dark:bg-slate-900/60 backdrop-blur rounded-[15px] p-6 sm:p-8 space-y-6">
+                {/* Window Controls */}
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                    Mission: Earthquake Drill
+                  </div>
+                </div>
+
+                {/* Tip Card */}
+                <div className="bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200/60 dark:border-blue-700/50 rounded-xl p-5 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-blue-600/15 dark:bg-blue-500/20 flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400 font-medium">
-                      Mission: Earthquake Drill
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-base text-slate-900 dark:text-white mb-2">Safety Tip</h3>
+                      <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Drop, Cover, and Hold On. Stay away from windows and heavy objects.
+                      </p>
                     </div>
                   </div>
-
-                  {/* Tip Card */}
-                  <div className="bg-blue-50/50 dark:bg-blue-900/20 border border-blue-200/60 dark:border-blue-700/50 rounded-xl p-5 space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-600/15 dark:bg-blue-500/20 flex items-center justify-center shrink-0">
-                        <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-base text-slate-900 dark:text-white mb-2">Safety Tip</h3>
-                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                          Drop, Cover, and Hold On. Stay away from windows and heavy objects.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex gap-3">
-                      <span className="px-4 py-1.5 bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-semibold border border-emerald-600/30 dark:border-emerald-500/30">
-                        +15 XP
-                      </span>
-                      <span className="px-4 py-1.5 bg-indigo-600/10 text-indigo-700 dark:text-indigo-400 rounded-full text-xs font-semibold border border-indigo-600/30 dark:border-indigo-500/30">
-                        🏆 Badge
-                      </span>
-                    </div>
+                  <div className="flex gap-3">
+                    <span className="px-4 py-1.5 bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-semibold border border-emerald-600/30 dark:border-emerald-500/30">
+                      +15 XP
+                    </span>
+                    <span className="px-4 py-1.5 bg-indigo-600/10 text-indigo-700 dark:text-indigo-400 rounded-full text-xs font-semibold border border-indigo-600/30 dark:border-indigo-500/30">
+                      🏆 Badge
+                    </span>
                   </div>
+                </div>
 
-                  {/* Action Choice */}
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-amber-500/20 dark:bg-amber-400/20 flex items-center justify-center shrink-0">
-                        <svg className="w-4 h-4 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <span className="text-sm font-semibold text-slate-900 dark:text-white">Choose your action</span>
+                {/* Action Choice */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/20 dark:bg-amber-400/20 flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-amber-600 dark:text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
                     </div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg">
-                        Hide under desk
-                      </Button>
-                      <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg">
-                        Run outside
-                      </Button>
-                      <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg col-span-2">
-                        Use elevator
-                      </Button>
-                    </div>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-white">Choose your action</span>
                   </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg">
+                      Hide under desk
+                    </Button>
+                    <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg">
+                      Run outside
+                    </Button>
+                    <Button className="bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600/50 hover:bg-slate-200 dark:hover:bg-slate-600/50 text-slate-900 dark:text-white font-medium py-5 rounded-lg col-span-2">
+                      Use elevator
+                    </Button>
+                  </div>
+                </div>
 
-                  {/* Progress Bar */}
-                  <div className="space-y-3 pt-2">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-slate-700 dark:text-slate-300 font-medium">Squad: River High</span>
-                      <span className="text-orange-600 dark:text-orange-400 flex items-center gap-1.5 font-semibold">
-                        🔥 Streak: 7
-                      </span>
-                    </div>
-                    <div className="h-2.5 bg-slate-200 dark:bg-slate-700/50 rounded-full overflow-hidden">
-                      <div className="h-full bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 rounded-full shadow-md" style={{ width: '75%' }}></div>
-                    </div>
+                {/* Progress Bar */}
+                <div className="space-y-3 pt-2">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-slate-700 dark:text-slate-300 font-medium">Squad: River High</span>
+                    <span className="text-orange-600 dark:text-orange-400 flex items-center gap-1.5 font-semibold">
+                      🔥 Streak: 7
+                    </span>
+                  </div>
+                  <div className="h-2.5 bg-slate-200 dark:bg-slate-700/50 rounded-full overflow-hidden">
+                    <div className="h-full bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 rounded-full shadow-md" style={{ width: '75%' }}></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </main>
 
       {/* Stats Section */}
       <section className="bg-white dark:bg-slate-900 py-12 sm:py-16 border-y border-slate-200 dark:border-slate-800">

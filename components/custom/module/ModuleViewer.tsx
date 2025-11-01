@@ -12,7 +12,7 @@ interface Lesson {
     createdAt: Date;
 }
 
-interface ModuleData {
+export interface ModuleData {
     id: string;
     title: string;
     description: string;
@@ -22,16 +22,16 @@ interface ModuleData {
     lessons: Lesson[];
 }
 
-export default function ModulePage({ module }: { module: ModuleData }) {
+export default function ModulePage({ moduleX }: { moduleX: ModuleData }) {
     const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
     const [completedLessons, setCompletedLessons] = useState<Set<number>>(new Set());
 
-    const currentLesson = module.lessons[currentLessonIndex];
-    const progress = (completedLessons.size / module.lessons.length) * 100;
+    const currentLesson = moduleX.lessons[currentLessonIndex];
+    const progress = (completedLessons.size / moduleX.lessons.length) * 100;
 
     const handleNextLesson = () => {
         setCompletedLessons((prev) => new Set(prev).add(currentLessonIndex));
-        if (currentLessonIndex < module.lessons.length - 1) {
+        if (currentLessonIndex < moduleX.lessons.length - 1) {
             setCurrentLessonIndex(currentLessonIndex + 1);
         }
     };
@@ -82,10 +82,10 @@ export default function ModulePage({ module }: { module: ModuleData }) {
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                                 <div>
                                     <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-                                        {module.title}
+                                        {moduleX.title}
                                     </h1>
                                     <p className="text-slate-600 dark:text-slate-400">
-                                        {module.description}
+                                        {moduleX.description}
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -93,16 +93,16 @@ export default function ModulePage({ module }: { module: ModuleData }) {
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        {module.duration} min
+                                        {moduleX.duration} min
                                     </span>
                                     <span
                                         className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                            module.level === "Beginner"
+                                            moduleX.level === "Beginner"
                                                 ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                                                 : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
                                         }`}
                                     >
-                                        {module.level}
+                                        {moduleX.level}
                                     </span>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@ export default function ModulePage({ module }: { module: ModuleData }) {
                             <div className="mt-4">
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-sm text-slate-600 dark:text-slate-400">
-                                        Progress: {completedLessons.size} of {module.lessons.length} lessons
+                                        Progress: {completedLessons.size} of {moduleX.lessons.length} lessons
                                     </span>
                                     <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
                                         {Math.round(progress)}%
@@ -141,7 +141,7 @@ export default function ModulePage({ module }: { module: ModuleData }) {
                                         Lessons
                                     </h2>
                                     <div className="space-y-2">
-                                        {module.lessons.map((lesson, index) => (
+                                        {moduleX.lessons.map((lesson, index) => (
                                             <button
                                                 key={lesson.id}
                                                 onClick={() => setCurrentLessonIndex(index)}
@@ -230,7 +230,7 @@ export default function ModulePage({ module }: { module: ModuleData }) {
                                             Previous
                                         </button>
 
-                                        {currentLessonIndex < module.lessons.length - 1 ? (
+                                        {currentLessonIndex < moduleX.lessons.length - 1 ? (
                                             <button
                                                 onClick={handleNextLesson}
                                                 className="flex items-center gap-2 px-6 py-2 rounded-lg font-medium bg-linear-to-r from-blue-500 to-indigo-500 text-white hover:from-blue-600 hover:to-indigo-600 transition-all shadow-lg shadow-indigo-500/25"
