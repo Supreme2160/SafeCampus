@@ -95,22 +95,34 @@ async function main() {
     lessons: {
       create: [
         {
-          title: "Drop, Cover, Hold On",
+          title: "Understanding Earthquakes",
           content:
-            "During an earthquake, drop to your hands and knees, cover your head and neck, and hold on until shaking stops.",
-          videoUrl: "https://example.com/videos/earthquake-drop-cover",
+            "Learn the fundamentals of earthquakes, including what causes them, how they occur, and why understanding them is crucial for safety.",
+          videoUrl: "http://www.youtube.com/watch?v=I0ureVMVzP8",
         },
         {
-          title: "Finding Safe Zones Indoors",
+          title: "Before an Earthquake",
           content:
-            "Identify sturdy furniture and interior corners. Stay away from windows and heavy objects that can fall.",
-          videoUrl: "https://example.com/videos/earthquake-safe-zones",
+            "Prepare for earthquakes by securing furniture, creating emergency plans, and assembling disaster kits.",
+          videoUrl: "http://www.youtube.com/watch?v=I0ureVMVzP8",
         },
         {
-          title: "Evacuation After Shaking",
+          title: "During an Earthquake",
           content:
-            "Once shaking stops, carefully evacuate to an open area. Watch for debris and aftershocks.",
-          videoUrl: "https://example.com/videos/earthquake-evacuation",
+            "Learn the critical Drop, Cover, and Hold On technique and what to do when the ground starts shaking.",
+          videoUrl: "http://www.youtube.com/watch?v=-MKMiFWK6Xk",
+        },
+        {
+          title: "After an Earthquake",
+          content:
+            "Once shaking stops, carefully evacuate to an open area. Watch for debris, aftershocks, and check for injuries.",
+          videoUrl: "http://www.youtube.com/watch?v=r5EbbrVXoQw",
+        },
+        {
+          title: "School-Specific Protocols",
+          content:
+            "Special safety procedures for schools including classroom safety, evacuation routes, and emergency assembly points.",
+          videoUrl: "http://www.youtube.com/watch?v=MllUVQM3KVk",
         },
       ],
     },
