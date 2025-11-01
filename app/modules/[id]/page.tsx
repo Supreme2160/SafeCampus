@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export default async function ModulePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const moduleX = await fetchModule(id);
-    console.log(moduleX);
+    // console.log(moduleX);
     if (!moduleX) {
         notFound();
     }

@@ -35,9 +35,7 @@ export default function GamesPage() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
-      <div className="container mx-auto px-6 py-6">
-        <Navbar />
-      </div>
+      <Navbar />
 
       <main className="container mx-auto px-6 py-12">
         <div className="mb-12">
@@ -57,10 +55,10 @@ export default function GamesPage() {
                 <div className="text-6xl mb-2">{game.icon}</div>
                 <h2 className="text-2xl font-bold">{game.title}</h2>
               </div>
-              
+
               <div className="p-6 space-y-4">
                 <p className="text-slate-300">{game.description}</p>
-                
+
                 <div>
                   <p className="text-sm font-semibold text-slate-400 mb-2">Skills Learned:</p>
                   <div className="flex flex-wrap gap-2">

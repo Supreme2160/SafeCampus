@@ -16,6 +16,33 @@ export default function BackpackHeroGame() {
   const [feedback, setFeedback] = useState<{ item: string; correct: boolean } | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Save game score to database
+  const saveGameScore = async (finalScore: number) => {
+    try {
+      const response = await fetch("/api/games/save-score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          gameName: "BACKPACK_HERO",
+          gameType: "ADVENTURE",
+          score: finalScore,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        console.error("Failed to save game score:", data.error);
+      } else {
+        console.log("Game score saved successfully:", data);
+      }
+    } catch (error) {
+      console.error("Error saving game score:", error);
+    }
+  };
+
   // Available items
   const allItems: Item[] = [
     { id: "water", name: "Water Bottles", emoji: "💧", category: "essential" },
@@ -131,7 +158,12 @@ export default function BackpackHeroGame() {
         setTimeLeft(scenarios[currentLevel + 1].timeLimit);
         startTimer();
       } else {
+        // Calculate final score before finishing
+        const finalScore = score + levelScore;
         setGameState("finished");
+        
+        // Save score to database
+        saveGameScore(finalScore);
       }
     }, 2000);
   };
