@@ -27,6 +27,7 @@ export default function CPRRhythmGame() {
   const startTimeRef = useRef<number>(0);
   const audioContextRef = useRef<AudioContext | null>(null);
   const compressionCountRef = useRef<number>(0);
+  const scoreSubmittedRef = useRef<boolean>(false);
   
   // CPR rhythm: 100-120 compressions per minute (ideal is 110 BPM)
   const BPM = 110;
@@ -37,6 +38,36 @@ export default function CPRRhythmGame() {
   // Hit zones
   const PERFECT_WINDOW = 100; // ms
   const GOOD_WINDOW = 200; // ms
+
+  // Save game score to database
+  const saveGameScore = useCallback(async (finalScore: number) => {
+    if (scoreSubmittedRef.current) return; // Prevent duplicate submissions
+    scoreSubmittedRef.current = true;
+    
+    try {
+      const response = await fetch("/api/games/save-score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          gameName: "CPR_RHYTHM_MASTER",
+          gameType: "RHYTHM",
+          score: finalScore,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        console.error("Failed to save game score:", data.error);
+      } else {
+        console.log("Game score saved successfully:", data);
+      }
+    } catch (error) {
+      console.error("Error saving game score:", error);
+    }
+  }, []);
   
   // Initialize audio context
   useEffect(() => {
@@ -98,6 +129,7 @@ export default function CPRRhythmGame() {
     setTimeElapsed(0);
     setTargetReached(false);
     compressionCountRef.current = 0;
+    scoreSubmittedRef.current = false; // Reset score submission flag
     generateBeats();
     startTimeRef.current = Date.now();
   };
@@ -173,7 +205,11 @@ export default function CPRRhythmGame() {
       // Check if target reached and end game
       if (newBeat >= TARGET_COMPRESSIONS) {
         setTargetReached(true);
-        setTimeout(() => setGameState("finished"), 500); // Small delay to show final feedback
+        // Save score before finishing
+        setTimeout(() => {
+          setGameState("finished");
+          saveGameScore(score + points); // Save current score plus the last compression points
+        }, 500); // Small delay to show final feedback
       }
       
       return newBeat;
@@ -183,7 +219,7 @@ export default function CPRRhythmGame() {
     setFeedback({ text: feedbackText, color: feedbackColor });
     setTimeout(() => setFeedback(null), 500);
     
-  }, [gameState, timeElapsed, beats, playBeep]);
+  }, [gameState, timeElapsed, beats, playBeep, score, saveGameScore]);
   
   // Keyboard controls
   useEffect(() => {

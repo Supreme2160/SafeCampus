@@ -10,6 +10,33 @@ export default function EarthquakeGame() {
   const [score, setScore] = useState(0);
   const livesRef = useRef(3);
 
+  // Save game score to database
+  const saveGameScore = async (finalScore: number) => {
+    try {
+      const response = await fetch("/api/games/save-score", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          gameName: "EARTHQUAKE_ESCAPE",
+          gameType: "ADVENTURE",
+          score: finalScore,
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        console.error("Failed to save game score:", data.error);
+      } else {
+        console.log("Game score saved successfully:", data);
+      }
+    } catch (error) {
+      console.error("Error saving game score:", error);
+    }
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -504,7 +531,12 @@ export default function EarthquakeGame() {
           // Game complete - all levels finished
           victory = true;
           setGameState("won");
-          setScore((prev) => prev + 100);
+          setScore((prev) => {
+            const newScore = prev + 100;
+            // Save score to database
+            saveGameScore(newScore);
+            return newScore;
+          });
         }
       }
 

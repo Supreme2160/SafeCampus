@@ -44,11 +44,9 @@ export default function Navbar() {
                                     </Link>
                                 </Button>
                             ) :
-                                (
-                                    <Button onClick={() => signOut()} asChild variant="destructive">
+                                    <Button className="bg-red-500 hover:bg-red-700 font-semibold text-white hover:rounded-2xl" onClick={() => signOut()} variant="destructive">
                                         Signout
                                     </Button>
-                                )
                             }
 
                         </li>
