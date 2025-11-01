@@ -1,4 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Tailwind v4 already supports the `dark` class variant.
+	Removing unsupported at-rule to prevent lint/build errors. */

@@ -1,5 +1,6 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from './prismaSingleton';
+import bcrypt from 'bcryptjs';
 
 export const authHandler = {
     providers: [
@@ -18,13 +19,28 @@ export const authHandler = {
                     const user = await prisma.user.findUnique({
                         where: {
                             email: credentials.email,
-                            password: credentials.password,
                         },
                     });
+                    
                     if (!user) {
                         return null;
                     }
-                    return {id: user.id.toString(), email: user.email};
+
+                    // Verify password
+                    const isValidPassword = await bcrypt.compare(
+                        credentials.password,
+                        user.password
+                    );
+
+                    if (!isValidPassword) {
+                        return null;
+                    }
+
+                    return {
+                        id: user.id.toString(),
+                        email: user.email,
+                        name: user.name || user.username,
+                    };
                 } catch (error) {
                     console.error(error);
                     return null;
