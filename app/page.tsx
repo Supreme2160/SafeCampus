@@ -9,64 +9,29 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-linear-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-900 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-900/[0.04] mask-[linear-gradient(0deg,transparent,black)]"></div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 dark:bg-blue-400/10 border border-blue-500/20 dark:border-blue-400/20">
-                  <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 animate-pulse"></span>
-                  <span className="text-sm font-semibold text-blue-700 dark:text-blue-300 tracking-wide">
-                    Learn • Play • Prepare
-                  </span>
-                </div>
-                
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight text-slate-900 dark:text-white">
-                  Train young adults
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500">
-                    with gamified
-                  </span>
-                  <br />
-                  modules.
-                </h1>
-                
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-                  SafeCampus helps agencies and institutions replace monotonous
-                  drills with <span className="font-semibold text-slate-900 dark:text-white">interactive virtual drills</span>. 
-                  Students complete missions, earn XP, and build real-world readiness.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4">
-                <Link href="/modules">
-                  <Button size="lg" className="bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-8 py-6 text-base rounded-xl shadow-lg shadow-blue-500/20">
-                    Browse Modules
-                  </Button>
-                </Link>
-                <Link href="/signin">
-                  <Button size="lg" variant="outline" className="border-2 border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold px-8 py-6 text-base rounded-xl">
-                    Get Started Free
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-8 pt-4 text-sm text-slate-600 dark:text-slate-400">
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-medium">No credit card</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-medium">5-min setup</span>
-                </div>
-              </div>
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+        <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
+          {/* Left Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400"></span>
+                Learn • Play • Prepare
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">
+                Train young adults
+                <br />
+                with gamified
+                <br />
+                modules.
+              </h1>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+                <span className="text-blue-600 dark:text-blue-400">For government,</span>
+                <br />
+                <span className="text-blue-600 dark:text-blue-400">schools, and</span>
+                <br />
+                <span className="text-blue-600 dark:text-blue-400">colleges.</span>
+              </h2>
             </div>
 
             {/* Right Content - Mission Card */}

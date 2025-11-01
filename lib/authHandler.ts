@@ -1,8 +1,9 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from './prismaSingleton';
 import bcrypt from 'bcryptjs';
+import type { AuthOptions } from 'next-auth';
 
-export const authHandler = {
+export const authHandler: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -40,6 +41,7 @@ export const authHandler = {
                         id: user.id.toString(),
                         email: user.email,
                         name: user.name || user.username,
+                        userType: user.userType,
                     };
                 } catch (error) {
                     console.error(error);
@@ -47,5 +49,21 @@ export const authHandler = {
                 }
             }
         })
-    ]
+    ],
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+                token.userType = user.userType;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id as string;
+                session.user.userType = token.userType as string;
+            }
+            return session;
+        },
+    },
 }
