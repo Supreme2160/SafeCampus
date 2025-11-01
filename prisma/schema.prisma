@@ -128,3 +128,28 @@ enum QuestionType {
   VOLCANO
   FOREST_FIRE
 }
+
+// Alert System Models
+model AlertSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  isActive  Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SentAlert {
+  id             String   @id @default(cuid())
+  alertId        String
+  title          String
+  severity       String
+  recipientCount Int
+  sentAt         DateTime @default(now())
+}
+
+model AlertCheck {
+  id          String   @id @default(cuid())
+  checkedAt   DateTime @default(now())
+  alertsFound Int      @default(0)
+  emailsSent  Int      @default(0)
+}
