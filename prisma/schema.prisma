@@ -59,7 +59,7 @@ model GameScore {
 
 model Quiz {
   id          String   @id @default(cuid())
-  title       String
+  title       String   @unique
   description String
   questions   Question[]
   createdAt   DateTime @default(now())
@@ -76,11 +76,13 @@ model Question{
   theme       QuestionType
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@unique([quizId, questionText])
 }
 
 model Modules {
   id          String   @id @default(cuid())
-  title       String
+  title       String   @unique
   description String
   lessons     Lesson[]
   createdAt   DateTime @default(now())
@@ -102,6 +104,8 @@ model Lesson {
   moduleId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@unique([moduleId, title])
 }
 
 enum USERTYPE {
