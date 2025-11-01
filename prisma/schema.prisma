@@ -86,6 +86,10 @@ model Modules {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   completedBy Student[] @relation("CompletedModules")
+  published   Boolean  @default(false)
+  coverImage  String?
+  duration   Int      
+  level      String
 }
 
 

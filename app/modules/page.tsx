@@ -1,44 +1,13 @@
+import fetchModules from "@/actions/fetchmodules";
 import Navbar from "@/components/custom/navbar/navbar";
+import Image from "next/image";
 
-const modules = [
-    {
-        id: 1,
-        title: "Earthquake Preparedness",
-        description:
-            "Learn essential earthquake safety measures, early warning signs, and proper response protocols.",
-        icon: "🌍",
-        duration: "45 mins",
-        level: "Beginner",
-        completed: false,
-    },
-    {
-        id: 2,
-        title: "Fire Safety & Evacuation",
-        description:
-            "Comprehensive fire prevention, detection, and evacuation procedures for educational institutions.",
-        icon: "🔥",
-        duration: "35 mins",
-        level: "Beginner",
-        completed: true,
-    },
-    {
-        id: 3,
-        title: "Flood Emergency Response",
-        description:
-            "Flood preparedness strategies, water safety, and emergency response for flood-prone areas.",
-        icon: "💧",
-        duration: "40 mins",
-        level: "Intermediate",
-        completed: false,
-    },
-];
-
-
-export default function Modules() {
+export default async function Modules() {
+    const modules = await fetchModules();
     return (
         <div className="flex flex-col min-h-screen bg-linear-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-slate-950 dark:via-indigo-950 dark:to-slate-900">
             <Navbar />
-            
+
             {/* Hero Section */}
             <section className="py-16 text-center px-4">
                 <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500">
@@ -85,12 +54,12 @@ export default function Modules() {
                             </div>
                         </div>
                         <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
-                            <div 
-                                className="bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 h-3 rounded-full transition-all duration-500" 
+                            <div
+                                className="bg-linear-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 h-3 rounded-full transition-all duration-500"
                                 style={{ width: '33%' }}
                             ></div>
                         </div>
-                        
+
                         {/* Stats Grid */}
                         <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-200/60 dark:border-slate-700/60">
                             <div className="text-center">
@@ -121,16 +90,14 @@ export default function Modules() {
                             <div className="bg-white/90 dark:bg-slate-900/60 backdrop-blur rounded-[15px] p-6 h-full flex flex-col ring-1 ring-white/10 dark:ring-white/10 transition-colors">
                                 <div className="flex items-start justify-between mb-4">
                                     <div className="w-12 h-12 rounded-xl bg-linear-to-br from-blue-500/10 to-indigo-500/10 dark:from-blue-400/10 dark:to-indigo-400/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                                        {module.icon}
-                                    </div>
-                                    {module.completed && (
-                                        <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-sm font-semibold px-2 py-1 rounded-lg bg-emerald-500/10">
-                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        {module.coverImage ? (
+                                            <Image src={module.coverImage} alt={module.title} className="w-10 h-10 object-cover rounded-xl" />
+                                        ) : (
+                                            <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zM12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                                             </svg>
-                                            Completed
-                                        </span>
-                                    )}
+                                        )}
+                                    </div>
                                 </div>
 
                                 <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -148,11 +115,10 @@ export default function Modules() {
                                         {module.duration}
                                     </span>
                                     <span
-                                        className={`px-3 py-1 rounded-full text-xs font-medium ${
-                                            module.level === 'Beginner'
-                                                ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                                                : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
-                                        }`}
+                                        className={`px-3 py-1 rounded-full text-xs font-medium ${module.level === 'Beginner'
+                                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                                            : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                                            }`}
                                     >
                                         {module.level}
                                     </span>
