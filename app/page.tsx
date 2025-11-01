@@ -1,5 +1,4 @@
 import Navbar from "@/components/custom/navbar/navbar";
-import Footer from "@/components/custom/footer/footer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -10,7 +9,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-  <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 items-center">
           {/* Left Content */}
           <div className="space-y-8">
