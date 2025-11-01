@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {  NextResponse } from 'next/server';
 
 interface NDMAAlert {
   id: string;
@@ -106,7 +107,7 @@ async function fetchWeatherAlerts(apiKey?: string): Promise<NDMAAlert[]> {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Fetch alerts from multiple sources
     const ndmaAlerts = await fetchAlertsFromAPI();

@@ -1,7 +1,7 @@
 import prisma from "@/lib/prismaSingleton";
 
 export default async function fetchModule(id: string) {
-    const module = await prisma.modules.findUnique({
+    const moduleX = await prisma.modules.findUnique({
         where: {
             id: id,
         },
@@ -14,5 +14,5 @@ export default async function fetchModule(id: string) {
         },
     });
 
-    return module;
+    return moduleX;
 }

@@ -23,11 +23,11 @@ export default async function DashboardPage() {
   // Redirect based on user type
   switch (user.userType) {
     case "STUDENT":
-      redirect("/Dashboard/student");
+      redirect("/dashboard/student");
     case "TEACHER":
-      redirect("/Dashboard/teacher");
+      redirect("/dashboard/teacher");
     case "ADMIN":
-      redirect("/Dashboard/admin");
+      redirect("/dashboard/admin");
     default:
       redirect("/");
   }

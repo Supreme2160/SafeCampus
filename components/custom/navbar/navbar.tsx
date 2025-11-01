@@ -17,8 +17,7 @@ export default function Navbar() {
         { href: "/alerts", label: "Alerts" },
         { href: "/virtual-training", label: "Virtual Training" },
         { href: "/dashboard", label: "Dashboard" },
-        { href: "/how-it-works", label: "How it works" },
-        { href: "/alerts", label: "Alerts" },
+        { href: "/how-it-works", label: "How it works" }
     ];
 
     return (

@@ -5,19 +5,25 @@
     - Run: npx prisma generate (first time or after schema changes)
     - Run: npx prisma db seed
 */
+import bcrypt from "bcryptjs";
 
-const { PrismaClient } = require("@prisma/client");
-const bcrypt = require("bcryptjs");
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  datasourceUrl: process.env.DATABASE_URL
+});
 
-async function ensureModule(data) {
+
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+async function ensureModule(data: any) {
   const existing = await prisma.modules.findFirst({ where: { title: data.title } });
   if (existing) return existing;
   return prisma.modules.create({ data });
 }
 
-async function ensureQuiz(data) {
+async function ensureQuiz(data: any) {
   const existing = await prisma.quiz.findFirst({ where: { title: data.title } });
   if (existing) return existing;
   return prisma.quiz.create({ data });
@@ -84,7 +90,7 @@ async function main() {
   });
 
   // Learning modules with lessons
-  const earthquakeModule = await ensureModule({
+  await ensureModule({
     title: "Earthquake Safety Basics",
     description:
       "Learn how to Drop, Cover, and Hold On, identify safe zones, and avoid hazards during earthquakes.",
@@ -128,7 +134,7 @@ async function main() {
     },
   });
 
-  const preparednessModule = await ensureModule({
+   await ensureModule({
     title: "Emergency Backpack Essentials",
     description:
       "Build a go-bag with water, food, radio, flashlight, first aid, and important documents for different disasters.",
@@ -152,7 +158,7 @@ async function main() {
     },
   });
 
-  const cprModule = await ensureModule({
+   await ensureModule({
     title: "CPR Rhythm and Response",
     description:
       "Learn the 110 BPM compression rhythm, proper depth, and cycles of 30 compressions and 2 breaths.",

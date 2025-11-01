@@ -289,6 +289,7 @@ Stay safe and stay informed!
   });
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   sendEmail,
   sendAlertEmail,

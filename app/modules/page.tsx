@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import fetchModules from "@/actions/fetchmodules";
 import Navbar from "@/components/custom/navbar/navbar";
 import Image from "next/image";
 import Link from "next/link";
+
 
 export default async function Modules() {
     const modules = await fetchModules();

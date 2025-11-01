@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="mt-16 border-t border-slate-200/60 dark:border-slate-800/60 bg-white/60 dark:bg-slate-900/40 backdrop-blur">
@@ -10,14 +12,14 @@ export default function Footer() {
           </div>
         </div>
         <nav className="flex items-center gap-6 text-sm">
-          <a href="/about" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">About</a>
-          <a href="/modules" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Modules</a>
-          <a href="/contact" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Contact</a>
-          <a href="/privacy" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Privacy</a>
+          <Link href="/about" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">About</Link>
+          <Link href="/modules" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Modules</Link>
+          <Link href="/contact" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Contact</Link>
+          <Link href="/privacy" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">Privacy</Link>
         </nav>
         <p className="text-xs text-slate-500 dark:text-slate-400">© {new Date().getFullYear()} SafeCampus. All rights reserved.</p>
       </div>
     </footer>
   );
 }
- 
+

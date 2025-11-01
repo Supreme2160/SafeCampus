@@ -67,6 +67,7 @@ export async function POST(request: NextRequest) {
         lastCheckTime = lastCheck.checkedAt;
       }
     } catch (error) {
+      console.log("Error api/alerts/check:", error);
       // Table might not exist yet, use default
       console.log('Alert check table not found, using default time');
     }
