@@ -41,7 +41,8 @@ export default function CPRRhythmGame() {
   // Initialize audio context
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      // @ts-expect-error - webkitAudioContext is a legacy property
+      audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
     }
     return () => {
       if (audioContextRef.current) {
@@ -85,7 +86,7 @@ export default function CPRRhythmGame() {
     }
     
     setBeats(newBeats);
-  }, []);
+  }, [BEAT_INTERVAL]);
   
   // Start game
   const startGame = () => {
@@ -182,7 +183,7 @@ export default function CPRRhythmGame() {
     setFeedback({ text: feedbackText, color: feedbackColor });
     setTimeout(() => setFeedback(null), 500);
     
-  }, [gameState, timeElapsed, beats, currentBeat, playBeep, targetReached]);
+  }, [gameState, timeElapsed, beats, playBeep]);
   
   // Keyboard controls
   useEffect(() => {
@@ -438,8 +439,8 @@ export default function CPRRhythmGame() {
                 <li>• <strong>Ideal Rate:</strong> 100-120 compressions per minute (we use 110 BPM)</li>
                 <li>• <strong>Depth:</strong> Push down at least 2 inches (5cm) on adult chest</li>
                 <li>• <strong>Cycle:</strong> 30 compressions, then 2 rescue breaths</li>
-                <li>• <strong>Song Reference:</strong> "Stayin' Alive" by Bee Gees matches the rhythm!</li>
-                <li>• <strong>Don't Stop:</strong> Continue until help arrives or person recovers</li>
+                <li>• <strong>Song Reference:</strong> &quot;Stayin&apos; Alive&quot; by Bee Gees matches the rhythm!</li>
+                <li>• <strong>Don&apos;t Stop:</strong> Continue until help arrives or person recovers</li>
               </ul>
             </div>
             
@@ -490,7 +491,7 @@ export default function CPRRhythmGame() {
               
               <div className="bg-slate-700/50 p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-3">3️⃣ Keep the Rhythm</h3>
-                <p className="text-slate-300">Listen to the metronome beeps and maintain steady timing. The rhythm is 110 BPM - like "Stayin' Alive"!</p>
+                <p className="text-slate-300">Listen to the metronome beeps and maintain steady timing. The rhythm is 110 BPM - like &quot;Stayin&apos; Alive&quot;!</p>
               </div>
               
               <div className="bg-slate-700/50 p-6 rounded-lg">
@@ -569,7 +570,7 @@ export default function CPRRhythmGame() {
             {accuracy >= 80 && (
               <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 mb-6">
                 <p className="text-green-300 font-semibold">
-                  🎓 Excellent! You've mastered the CPR rhythm!
+                  🎓 Excellent! You&apos;ve mastered the CPR rhythm!
                 </p>
               </div>
             )}

@@ -8,7 +8,6 @@ export default function EarthquakeGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [gameState, setGameState] = useState<"playing" | "won" | "lost">("playing");
   const [score, setScore] = useState(0);
-  const [lives, setLives] = useState(3);
   const livesRef = useRef(3);
 
   useEffect(() => {
@@ -160,8 +159,15 @@ export default function EarthquakeGame() {
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
+    interface CollisionRect {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }
+
     // Check collision
-    const checkCollision = (rect1: any, rect2: any) => {
+    const checkCollision = (rect1: CollisionRect, rect2: CollisionRect) => {
       return (
         rect1.x < rect2.x + rect2.width &&
         rect1.x + rect1.width > rect2.x &&
@@ -236,8 +242,17 @@ export default function EarthquakeGame() {
         });
       }
 
+      interface Obstacle {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        color: string;
+        label?: string;
+      }
+
       // Draw ground obstacles (buildings/furniture)
-      obstacles.forEach((obs: any) => {
+      obstacles.forEach((obs: Obstacle) => {
         ctx.fillStyle = obs.color;
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
         ctx.strokeStyle = "#5a4a32";
@@ -298,7 +313,6 @@ export default function EarthquakeGame() {
           d.y = -50;
           d.x = Math.random() * (canvas.width - 50) + 50;
           currentLives -= 1;
-          setLives(currentLives);
           livesRef.current = currentLives;
           if (currentLives <= 0) {
             gameOver = true;
@@ -606,12 +620,12 @@ export default function EarthquakeGame() {
       window.removeEventListener("keyup", handleKeyUp);
       cancelAnimationFrame(animationFrameId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const restartGame = () => {
     setGameState("playing");
     setScore(0);
-    setLives(3);
     livesRef.current = 3;
     // Reload the component to restart the game loop
     window.location.reload();
@@ -701,7 +715,7 @@ export default function EarthquakeGame() {
             <li>• <strong>Drop, Cover, and Hold On:</strong> Get under sturdy furniture and protect your head</li>
             <li>• <strong>Stay Away from Windows:</strong> Glass can shatter and cause injuries</li>
             <li>• <strong>Find Safe Spots:</strong> Door frames, under tables, or interior corners are safest</li>
-            <li>• <strong>Don't Run Outside:</strong> Falling debris outside is more dangerous during the quake</li>
+            <li>• <strong>Don&apos;t Run Outside:</strong> Falling debris outside is more dangerous during the quake</li>
             <li>• <strong>Stay Put:</strong> Wait until the shaking stops before moving to a safer location</li>
           </ul>
         </div>
