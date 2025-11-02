@@ -30,6 +30,15 @@ export default function GamesPage() {
       difficulty: "Medium",
       skills: ["Rhythm & Timing", "CPR Training", "Hand-Eye Coordination"],
       color: "from-red-500 to-pink-600"
+    },
+    {
+      title: "Safety Quiz Challenge",
+      description: "Test your knowledge of emergency preparedness! Answer timed multiple-choice questions covering earthquakes, floods, fires, and more.",
+      icon: "🧠",
+      href: "/games/quiz",
+      difficulty: "Easy",
+      skills: ["Knowledge Recall", "Quick Thinking", "Safety Awareness"],
+      color: "from-purple-500 to-indigo-600"
     }
   ];
 
