@@ -3,3 +3,85 @@
 
 /* Tailwind v4 already supports the `dark` class variant.
 	Removing unsupported at-rule to prevent lint/build errors. */
+
+@layer base {
+  :root {
+    /* Light mode - Blue-tinted background */
+    --background: 214 100% 98%;
+    --foreground: 220 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 32% 91%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 214 32% 94%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 214 95% 95%;
+    --accent-foreground: 221 83% 53%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 221 83% 53%;
+    --radius: 0.5rem;
+    --chart-1: 221 83% 53%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 45 93% 47%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 16 85% 55%;
+  }
+
+  .dark {
+    /* Dark mode - Deep blue-gray background */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 20%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 142 76% 36%;
+    --chart-3: 45 93% 47%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 16 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    /* Subtle blue gradient overlay */
+    background-image: 
+      radial-gradient(at 0% 0%, hsl(221 83% 53% / 0.05) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(217 91% 60% / 0.05) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  body.dark {
+    /* Slightly stronger gradient for dark mode */
+    background-image: 
+      radial-gradient(at 0% 0%, hsl(217 91% 60% / 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(221 83% 53% / 0.08) 0px, transparent 50%);
+  }
+}
