@@ -5,6 +5,7 @@ import { Quiz, QuizQuestion, QuizResult } from "./types";
 import { QuizMenuScreen } from "./components/QuizMenuScreen";
 import { QuizGameScreen } from "./components/QuizGameScreen";
 import { QuizResultsScreen } from "./components/QuizResultsScreen";
+import Navbar from "@/components/custom/navbar/navbar";
 
 export default function QuizGame() {
   const [gameState, setGameState] = useState<"menu" | "playing" | "finished">("menu");
@@ -315,7 +316,7 @@ export default function QuizGame() {
     } else {
       // Quiz finished
       setGameState("finished");
-      
+
       // Save score to database
       saveGameScore(score);
     }
@@ -358,16 +359,17 @@ export default function QuizGame() {
   const question = currentQuiz.questions[currentQuestion];
 
   return (
-    <QuizGameScreen
-      currentQuestion={currentQuestion}
-      totalQuestions={currentQuiz.questions.length}
-      question={question}
-      selectedAnswer={selectedAnswer}
-      isAnswered={isAnswered}
-      score={score}
-      timeLeft={timeLeft}
-      onSelectAnswer={handleSelectAnswer}
-      onNextQuestion={nextQuestion}
-    />
+    <>
+      <QuizGameScreen
+        currentQuestion={currentQuestion}
+        totalQuestions={currentQuiz.questions.length}
+        question={question}
+        selectedAnswer={selectedAnswer}
+        isAnswered={isAnswered}
+        score={score}
+        timeLeft={timeLeft}
+        onSelectAnswer={handleSelectAnswer}
+        onNextQuestion={nextQuestion}
+      /></>
   );
 }

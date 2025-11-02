@@ -30,7 +30,6 @@ export function QuizGameScreen({
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-6">
       <div className="container mx-auto max-w-4xl">
-        {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">🧠 Safety Quiz</h1>
