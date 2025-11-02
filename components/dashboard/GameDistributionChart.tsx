@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -56,7 +57,7 @@ export function GameDistributionChart({ data, totalGames }: GameDistributionChar
           label: "Games",
         },
       }}
-      className="h-[320px] w-full"
+      className="h-80 w-full"
     >
       <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
         <Pie

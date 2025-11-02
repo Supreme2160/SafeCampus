@@ -12,18 +12,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { DashboardHeader } from "@/components/dashboard";
 import { PerformanceTrendChart } from "@/components/dashboard/PerformanceTrendChart";
 import { GameScoresChart } from "@/components/dashboard/GameScoresChart";
-import { ProgressRadialChart } from "@/components/dashboard/ProgressRadialChart";
 
 async function getStudentData(userId: string) {
   const user = await prisma.user.findUnique({
