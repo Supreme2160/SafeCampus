@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Quiz, QuizQuestion, QuizResult } from "./types";
+import { Quiz, QuizResult } from "./types";
 import { QuizMenuScreen } from "./components/QuizMenuScreen";
 import { QuizGameScreen } from "./components/QuizGameScreen";
 import { QuizResultsScreen } from "./components/QuizResultsScreen";
-import Navbar from "@/components/custom/navbar/navbar";
 
 export default function QuizGame() {
   const [gameState, setGameState] = useState<"menu" | "playing" | "finished">("menu");

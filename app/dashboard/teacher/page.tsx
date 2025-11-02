@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DashboardHeader, StatsCard } from "@/components/dashboard";
+import { DashboardHeader } from "@/components/dashboard";
 import { EngagementChart } from "@/components/dashboard/EngagementChart";
 import { ModuleChart } from "@/components/dashboard/ModuleChart";
 import { GameDistributionChart } from "@/components/dashboard/GameDistributionChart";
@@ -86,8 +86,7 @@ async function getAnalyticsData() {
   try {
     // Get overall statistics
     const totalStudents = await prisma.student.count();
-    const totalModules = await prisma.modules.count();
-    
+
     // Get student engagement over time (last 12 months)
     const twelveMonthsAgo = new Date();
     twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
@@ -237,14 +236,11 @@ export default async function TeacherDashboard() {
     );
   }
 
-  const { totalStudents, students } = await getStudentStats();
+  const { students } = await getStudentStats();
   const recentActivity = await getRecentActivity();
   const analytics = await getAnalyticsData();
 
-  const totalGamesPlayed = students.reduce(
-    (sum, student) => sum + student.gamesPlayed,
-    0
-  );
+
   const totalModulesCompleted = students.reduce(
     (sum, student) => sum + student.modulesCompleted.length,
     0

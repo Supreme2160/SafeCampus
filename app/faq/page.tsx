@@ -425,7 +425,7 @@ export default function FAQ() {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">No FAQs Found</h3>
               <p className="text-gray-500 dark:text-gray-400 text-lg mb-6">
-                We couldn't find any questions matching "<span className="font-semibold text-blue-600 dark:text-blue-400">{searchQuery}</span>"
+                We couldn&apos;t find any questions matching &quot;<span className="font-semibold text-blue-600 dark:text-blue-400">{searchQuery}</span>&quot;
               </p>
               <button
                 onClick={() => {
@@ -454,7 +454,7 @@ export default function FAQ() {
                   Still have questions?
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-                  Can't find the answer you're looking for? Our dedicated support team is here to help you 24/7.
+                  Can&apos;t find the answer you&apos;re looking for? Our dedicated support team is here to help you 24/7.
                 </p>
               </div>
 
