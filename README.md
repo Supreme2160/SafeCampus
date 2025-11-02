@@ -1,7 +1,7 @@
 # 🏫 SafeCampus
 
 **Team Name:** 4B4T  
-**Event:** HackwithMAIT 6.0  
+**Event:** CodeSlayer2k25
 **Track:** Open Innovation
 
 ---
